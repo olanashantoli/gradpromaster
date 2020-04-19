@@ -49,7 +49,7 @@ export default class Login extends Component {
           {
             text: "OK",
             onPress: () => {
-              navigation.navigate("Join_our_team");
+              navigation.navigate("Home");
             }
           }
         ],

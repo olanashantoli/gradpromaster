@@ -136,14 +136,14 @@ export default class SignUp extends Component {
               )}
             </Button>
 
-            <Button onPress={() => navigation.navigate("Login")}>
+            <Button onPress={() => navigation.navigate("Welcome")}>
               <Text
                 gray
                 caption
                 center
                 style={{ textDecorationLine: "underline" }}
               >
-                Back to Login
+                Back to welcome page
               </Text>
             </Button>
             </ScrollView>
