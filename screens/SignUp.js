@@ -28,7 +28,7 @@ export default class SignUp extends Component {
     errors: [],
     loading: false
   };
-  onPress = gender => this.setState({ gender });
+ 
   handleSignUp() {
     const { navigation } = this.props;
     const { username,email, mobile_phone, password, confirm_password } = this.state;
@@ -58,7 +58,7 @@ export default class SignUp extends Component {
           {
             text: "Continue",
             onPress: () => {
-              navigation.navigate("Join_our_team");
+              navigation.navigate("Login");
             }
           }
         ],

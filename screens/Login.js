@@ -53,6 +53,7 @@ export default class Login extends Component {
             }
           }
         ],
+        
         { cancelable: false }
       );
   

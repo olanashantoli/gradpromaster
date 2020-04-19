@@ -8,7 +8,7 @@ import Login from "../screens/Login";
 import SignUp from "../screens/SignUp";
 import Forgot from "../screens/Forgot";
 import Join_our_team from "../screens/Join_our_team";
-//import Browse from "../screens/Browse";
+import Profile from "../screens/Profile";
 //import Product from "../screens/Product";
 //import Settings from "../screens/Settings";
 
@@ -20,8 +20,8 @@ const screens = createStackNavigator(
     Login,
     SignUp,
     Forgot,
-    Join_our_team
-    //Browse,
+    Join_our_team,
+    Profile
     //Product,
     //Settings
   },

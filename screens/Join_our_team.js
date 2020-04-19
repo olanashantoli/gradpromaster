@@ -11,6 +11,8 @@ import {
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
+
+
 const VALID_EMAIL = "olahantoli@gmail.com";
 
 export default class Join_our_team extends Component {
@@ -20,7 +22,7 @@ export default class Join_our_team extends Component {
     loading: false
   };
 
-  handleJoin_our_team() {
+  handlejoin() {
     const { navigation } = this.props;
     const { email } = this.state;
     const errors = [];
@@ -37,13 +39,13 @@ export default class Join_our_team extends Component {
 
     if (!errors.length) {
       Alert.alert(
-        "Password sent!",
+        "you your comment was send !",
         "Please check you email.",
         [
           {
             text: "OK",
             onPress: () => {
-              navigation.navigate("Join_our_team");
+              navigation.navigate("Profile");
             }
           }
         ],
@@ -58,52 +60,51 @@ export default class Join_our_team extends Component {
       );
     }
   }
+  
 
   render() {
     const { navigation } = this.props;
     const { loading, errors } = this.state;
     const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
 
+    
     return (
       <TouchableWithoutFeedback onpress={()=>{Keyboard.dismiss}}>
       <KeyboardAvoidingView style={styles.Join_our_team} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
-          <Text h1 bold>
-            Join_our_team
+
+          <Text h2 bold>
+          {"    \n  \n\n"}
+            Fill out the comment and our team
+             will contaact you after reviewing
           </Text>
-          <Block middle>
-            <Input
-              label="Email"
-              error={hasErrors("email")}
-              style={[styles.input, hasErrors("email")]}
-              defaultValue={this.state.email}
-              onChangeText={text => this.setState({ email: text })}
+        {/* //  {"    \n  \n  \n  \n\n"} */}
+
+         <Text h4 bold>
+         {"    \n  \n\n"}
+       
+          </Text>
+          <Input
+              label="  your comment : " 
+             
+              
+            
             />
-           
-
-
-           
-            <Button gradient onPress={() => this.handleJoin_our_team()}>
+     <Text h4 bold>
+         {"     \n\n"}
+       
+          </Text>
+            
+         
+            <Button gradient onPress={() => this.handlejoin()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />
               ) : (
                 <Text bold white center>
-                  Join_our_team
+                  Submit
                 </Text>
               )}
             </Button>
-
-            <Button onPress={() => navigation.navigate("Login")}>
-              <Text
-                gray
-                caption
-                center
-                style={{ textDecorationLine: "underline" }}
-              >
-                Back to Login
-              </Text>
-            </Button>
-          </Block>
         </Block>
       </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
@@ -114,7 +115,7 @@ export default class Join_our_team extends Component {
 const styles = StyleSheet.create({
   Join_our_team: {
     flex: 1,
-    justifyContent: "center"
+    alignContent: "center"
   },
   input: {
     borderRadius: 0,

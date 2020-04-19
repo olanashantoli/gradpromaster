@@ -1,24 +1,26 @@
-{/* <Header
-  placement="left"
-  leftComponent={{ icon: 'menu', color: '#fff' }}
-  centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-  rightComponent={{ icon: 'home', color: '#fff' }}
-/> */}
+//This is an example of Tab inside Navigation Drawer in React Native//
+import React, { Component } from 'react';
+//import react in our code.
+import { StyleSheet, View, Text } from 'react-native';
+// import all basic components
 
-import React, { Component } from "react";
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity
-} from "react-native";
-
-import { Card, Badge, Button, Block, Text } from "../components";
-import { theme, mocks } from "../constants";
-
-const { width } = Dimensions.get("window");
-class Home extends Component {
-  //  state = {
+export default class Home extends Component {
+  //Screen2 Component
+  render() {
+    return (
+      <View style={styles.MainContainer}>
+        <Text style={{ fontSize: 23 }}> Home </Text>
+      </View>
+    );
+  }
 }
-export default Home;
+
+const styles = StyleSheet.create({
+  MainContainer: {
+    flex: 1,
+    paddingTop: 20,
+    alignItems: 'center',
+    marginTop: 50,
+    justifyContent: 'center',
+  },
+});
