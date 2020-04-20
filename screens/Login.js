@@ -5,7 +5,8 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   StyleSheet ,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ScrollView
 } from "react-native";
 
 import { Button, Block, Input, Text } from "../components";
@@ -49,7 +50,7 @@ export default class Login extends Component {
           {
             text: "OK",
             onPress: () => {
-              navigation.navigate("Home");
+              navigation.navigate("Sallikna");
             }
           }
         ],
@@ -80,10 +81,19 @@ export default class Login extends Component {
       <TouchableWithoutFeedback onpress={()=>{Keyboard.dismiss}}>
       <KeyboardAvoidingView style={styles.login} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
+        <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+
           <Text h1 bold>
             Login
           </Text>
+          <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+
           <Block middle>
+          <ScrollView>
             <Input
               label="Email"
               error={hasErrors("email")}
@@ -99,6 +109,11 @@ export default class Login extends Component {
               defaultValue={this.state.password}
               onChangeText={text => this.setState({ password: text })}
             />
+            
+            <Text bold white center>
+            {"\n"} {"\n"} {"\n"} {"\n"}
+                </Text>
+
             <Button gradient onPress={() => this.handleLogin()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />
@@ -119,6 +134,18 @@ export default class Login extends Component {
                 Forgot your password?
               </Text>
             </Button>
+            
+            <Button onPress={() => navigation.navigate("Welcome")}>
+              <Text
+                gray
+                caption
+                center
+                style={{ textDecorationLine: "underline" }}
+              >
+                Back to welcome page
+              </Text>
+            </Button>
+            </ScrollView>
           </Block>
         </Block>
       </KeyboardAvoidingView>

@@ -11,19 +11,23 @@ import {
 } from 'react-native';
 
 //Import required react-navigation component 
-import {
-  createDrawerNavigator,
-  createStackNavigator,
-  createAppContainer
-} from 'react-navigation';
+
+import {createAppContainer} from 'react-navigation';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import {createStackNavigator} from 'react-navigation-stack';
 
 //Import all the screens for Drawer/ Sidebar
 import Home from './Home';
 import Join_our_team from './Join_our_team';
 import Profile from './Profile';
 
+import { theme } from "../constants";
 //Navigation Drawer Structure for all screen
 class NavigationDrawerStructure extends Component {
+
+
+
+  
   //Structure for the navigatin Drawer
   toggleDrawer = () => {
     //Props to open/close the drawer
@@ -35,7 +39,7 @@ class NavigationDrawerStructure extends Component {
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
           {/*Donute Button Image */}
           <Image
-            source={require('./image/drawer.png')}
+            source={require('../image/drawer.png')}
             style={{ width: 25, height: 25, marginLeft: 5 }}
           />
         </TouchableOpacity>
@@ -53,7 +57,8 @@ const FirstActivity_StackNavigator = createStackNavigator({
       title: 'Home',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#FF9800',
+        height: theme.sizes.base * 5,
+        backgroundColor: '#8875ba',
         shadowOpacity: 0,
         elevation: 0,
       },
@@ -72,8 +77,10 @@ const Screen2_StackNavigator = createStackNavigator({
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
 
       headerStyle: {
-        backgroundColor: '#FF9800',
+        height: theme.sizes.base * 5,
+        backgroundColor: '#8875ba',
       },
+      
       headerTintColor: '#fff',
     }),
   },
@@ -88,7 +95,8 @@ const Screen3_StackNavigator = createStackNavigator({
       title: 'profile',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#FF9800',
+        height: theme.sizes.base * 5,
+        backgroundColor: '#8875ba',
       },
       headerTintColor: '#fff',
     }),

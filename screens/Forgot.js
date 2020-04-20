@@ -68,6 +68,10 @@ export default class Forgot extends Component {
       <TouchableWithoutFeedback onpress={()=>{Keyboard.dismiss}}>
       <KeyboardAvoidingView style={styles.forgot} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
+        <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+
           <Text h1 bold>
             Forgot
           </Text>
@@ -79,6 +83,10 @@ export default class Forgot extends Component {
               defaultValue={this.state.email}
               onChangeText={text => this.setState({ email: text })}
             />
+             <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+
             <Button gradient onPress={() => this.handleForgot()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />

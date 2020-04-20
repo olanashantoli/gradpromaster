@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+ 
   Alert,
   ActivityIndicator,
   Keyboard,
@@ -44,9 +45,7 @@ export default class Join_our_team extends Component {
         [
           {
             text: "OK",
-            onPress: () => {
-              navigation.navigate("Profile");
-            }
+           
           }
         ],
         { cancelable: false }
@@ -80,18 +79,15 @@ export default class Join_our_team extends Component {
           </Text>
         {/* //  {"    \n  \n  \n  \n\n"} */}
 
-         <Text h4 bold>
-         {"    \n  \n\n"}
-       
-          </Text>
+        
           <Input
               label="  your comment : " 
              
-              
+          
             
             />
      <Text h4 bold>
-         {"     \n\n"}
+         {"    \n\n \n\n"}
        
           </Text>
             

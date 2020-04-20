@@ -76,10 +76,17 @@ export default class Profile extends Component {
         <KeyboardAvoidingView style={styles.signup} behavior="padding">
        
           <Block padding={[0, theme.sizes.base * 2]}>
+          <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+
             <Text h1 bold>
               Edit Profile Information
             </Text>
-  
+            <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+
             <Block middle>
             <ScrollView>
             <Input

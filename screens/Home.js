@@ -10,7 +10,7 @@ export default class Home extends Component {
     return (
       <View style={styles.MainContainer}>
         <Text style={{ fontSize: 23 }}> Home </Text>
-      </View>
+      </View>  
     );
   }
 }

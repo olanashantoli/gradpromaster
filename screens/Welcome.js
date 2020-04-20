@@ -88,7 +88,7 @@ class Welcome extends Component {
       <Block>
         <Block center bottom flex={0.4}>
           <Text h1 center bold>
-          RoadSide <Text h1 center bold style={styles.black}> Assistance  </Text>
+          RoadSide  Assistance  
             <Text h1  style={styles.red}>
               {"  \n"}
               Sallikna
@@ -113,6 +113,7 @@ class Welcome extends Component {
             </Text>
           </Button>
      
+
         </Block>
         
       </Block>
@@ -145,12 +146,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 2.5
   },
   red: {
-    color: 'red'
-  },
+    color: 'red'  },
   black: {
     color: 'black'
   },
   green: {
     color: 'green'
   },
+  orange: {
+    color:'#e68a00'
+    
+  }
+  ,
+
 });

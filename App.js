@@ -44,9 +44,9 @@ export default class App extends React.Component {
     }
 
     return (
-      <Block white>
+     // <Block black>
         <Navigation />
-      </Block>
+     // </Block>
     );
   }
 }

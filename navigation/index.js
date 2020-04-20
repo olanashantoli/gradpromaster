@@ -8,8 +8,8 @@ import Login from "../screens/Login";
 import SignUp from "../screens/SignUp";
 import Forgot from "../screens/Forgot";
 import Home from "../screens/Home";
+import Sallikna from "../screens/Sallikna";
 //import Profile from "../screens/Profile";
-//import Product from "../screens/Product";
 //import Settings from "../screens/Settings";
 
 import { theme } from "../constants";
@@ -20,30 +20,32 @@ const screens = createStackNavigator(
     Login,
     SignUp,
     Forgot,
-    Home
-   // Profile
-    //Product,
+    Home,
+    Sallikna //,
+    //Profile
+    
     //Settings
   },
   {
     defaultNavigationOptions: {
       headerStyle: {
-        height: theme.sizes.base * 4,
-        backgroundColor: theme.colors.white, // or 'white
+        height: theme.sizes.base * 5,
+        backgroundColor: theme.colors.gray2, // or 'white
         borderBottomColor: "transparent",
         elevation: 0 // for android
       },
       headerBackImage:()=> <Image source={require("../assets/icons/back.png")} />,
-      headerBackTitle: null,
+      headerBackTitle: null ,
       headerLeftContainerStyle: {
         alignItems: "center",
-        marginLeft: theme.sizes.base * 2,
-        paddingRight: theme.sizes.base
+        marginLeft: theme.sizes.base * 17,
+        paddingRight: theme.sizes.base *5
       },
       headerRightContainerStyle: {
         alignItems: "center",
         paddingRight: theme.sizes.base
-      }
+      },
+      headerTintColor: '#fff',
     }
   }
 );
