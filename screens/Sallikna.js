@@ -20,6 +20,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Home from './Home';
 import Join_our_team from './Join_our_team';
 import Profile from './Profile';
+import Manage_vehicle from './Manage_vehicle';
 
 import { theme } from "../constants";
 //Navigation Drawer Structure for all screen
@@ -103,6 +104,22 @@ const Screen3_StackNavigator = createStackNavigator({
   },
 });
 
+const Screen4_StackNavigator = createStackNavigator({
+  //All the screen from the Screen3 will be indexed here
+  Fourth: {
+    screen: Manage_vehicle,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Manage_vehicle',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        height: theme.sizes.base * 5,
+        backgroundColor: '#8875ba',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
 //Drawer Navigator for the Navigation Drawer / Sidebar
 const DrawerNavigatorExample = createDrawerNavigator({
   //Drawer Optons and indexing
@@ -127,6 +144,13 @@ const DrawerNavigatorExample = createDrawerNavigator({
     screen: Screen3_StackNavigator,
     navigationOptions: {
       drawerLabel: 'profile',
+    },
+  },
+  Manage_vehicle: {
+    //Title
+    screen: Screen4_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Manage_vehicle',
     },
   },
 });
