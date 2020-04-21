@@ -6,7 +6,8 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   StyleSheet ,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  TextInput
 } from "react-native";
 
 import { Button, Block, Input, Text } from "../components";
@@ -82,7 +83,7 @@ export default class Join_our_team extends Component {
         
           <Input
               label="  your comment : " 
-             
+              multiline={true}
           
             
             />

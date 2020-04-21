@@ -21,7 +21,7 @@ import Home from './Home';
 import Join_our_team from './Join_our_team';
 import Profile from './Profile';
 import Manage_vehicle from './Manage_vehicle';
-
+import Services from './Services';
 import { theme } from "../constants";
 //Navigation Drawer Structure for all screen
 class NavigationDrawerStructure extends Component {
@@ -119,6 +119,21 @@ const Screen4_StackNavigator = createStackNavigator({
     }),
   },
 });
+const Screen5_StackNavigator = createStackNavigator({
+  //All the screen from the Screen3 will be indexed here
+  Fiveth: {
+    screen: Services,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Services',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        height: theme.sizes.base * 5,
+        backgroundColor: '#8875ba',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
 
 //Drawer Navigator for the Navigation Drawer / Sidebar
 const DrawerNavigatorExample = createDrawerNavigator({
@@ -151,6 +166,13 @@ const DrawerNavigatorExample = createDrawerNavigator({
     screen: Screen4_StackNavigator,
     navigationOptions: {
       drawerLabel: 'Manage_vehicle',
+    },
+  },
+  Services: {
+    //Title
+    screen: Screen5_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Services',
     },
   },
 });
