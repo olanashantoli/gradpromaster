@@ -3,14 +3,25 @@ import React, { Component } from 'react';
 //import react in our code.
 import { StyleSheet, View, Text } from 'react-native';
 // import all basic components
-
+import  MapView  from 'react-native-maps';
 export default class Home extends Component {
   //Screen2 Component
   render() {
     return (
       <View style={styles.MainContainer}>
         <Text style={{ fontSize: 23 }}> Home </Text>
-      </View>  
+      </View>  ,
+      <MapView
+      style={{
+        flex: 1
+      }}
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }}
+    />
     );
   }
 }

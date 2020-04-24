@@ -13,7 +13,7 @@ import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
 
-export default class Profile extends Component {
+export default class Logout extends Component {
  
     state = {
       
@@ -55,9 +55,7 @@ export default class Profile extends Component {
           [
             {
               text: "ok",
-              onPress: () => {
-                navigation.navigate("Profile");
-              }
+             
             }
           ],
           { cancelable: false }

@@ -12,8 +12,6 @@ import { Button, Block, Input, Text } from "../components";
 
 
 
-import Battery_Charge from "../screens/Battery_Charge";
-import Break_Down from "../screens/Break_Down";
 
 import { theme } from "../constants";
 

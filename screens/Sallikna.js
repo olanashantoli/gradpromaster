@@ -22,6 +22,7 @@ import Join_our_team from './Join_our_team';
 import Profile from './Profile';
 import Manage_vehicle from './Manage_vehicle';
 import Services from './Services';
+import Logout from './Logout';
 import { theme } from "../constants";
 //Navigation Drawer Structure for all screen
 class NavigationDrawerStructure extends Component {
@@ -72,9 +73,9 @@ const FirstActivity_StackNavigator = createStackNavigator({
 const Screen2_StackNavigator = createStackNavigator({
   //All the screen from the Screen2 will be indexed here
   Second: {
-    screen: Join_our_team,
+    screen: Services,
     navigationOptions: ({ navigation }) => ({
-      title: 'Join_our_team',
+      title: 'Services',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
 
       headerStyle: {
@@ -91,9 +92,9 @@ const Screen2_StackNavigator = createStackNavigator({
 const Screen3_StackNavigator = createStackNavigator({
   //All the screen from the Screen3 will be indexed here
   Third: {
-    screen: Profile,
+    screen: Manage_vehicle,
     navigationOptions: ({ navigation }) => ({
-      title: 'profile',
+      title: 'Manage_vehicle',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         height: theme.sizes.base * 5,
@@ -107,9 +108,9 @@ const Screen3_StackNavigator = createStackNavigator({
 const Screen4_StackNavigator = createStackNavigator({
   //All the screen from the Screen3 will be indexed here
   Fourth: {
-    screen: Manage_vehicle,
+    screen: Profile,
     navigationOptions: ({ navigation }) => ({
-      title: 'Manage_vehicle',
+      title: 'Profile',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         height: theme.sizes.base * 5,
@@ -122,9 +123,9 @@ const Screen4_StackNavigator = createStackNavigator({
 const Screen5_StackNavigator = createStackNavigator({
   //All the screen from the Screen3 will be indexed here
   Fiveth: {
-    screen: Services,
+    screen: Join_our_team,
     navigationOptions: ({ navigation }) => ({
-      title: 'Services',
+      title: 'Join_our_team',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         height: theme.sizes.base * 5,
@@ -135,6 +136,22 @@ const Screen5_StackNavigator = createStackNavigator({
   },
 });
 
+ const Screen6_StackNavigator = createStackNavigator({
+  //All the screen from the Screen3 will be indexed here
+  Sixth: {
+    screen: Logout,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Logout',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        height: theme.sizes.base * 5,
+        backgroundColor: '#8875ba',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+}); 
+ 
 //Drawer Navigator for the Navigation Drawer / Sidebar
 const DrawerNavigatorExample = createDrawerNavigator({
   //Drawer Optons and indexing
@@ -143,37 +160,46 @@ const DrawerNavigatorExample = createDrawerNavigator({
     screen: FirstActivity_StackNavigator,
     navigationOptions: {
       drawerLabel: 'Home',
+      
     },
   },
 
-  Join_our_team: {
+  Services: {
     //Title
     screen: Screen2_StackNavigator,
     navigationOptions: {
-      drawerLabel: 'Join_our_team',
+      drawerLabel: 'Services',
     },
-  },
-
-  Profile: {
-    //Title
-    screen: Screen3_StackNavigator,
-    navigationOptions: {
-      drawerLabel: 'profile',
-    },
-  },
+  }, 
+  
   Manage_vehicle: {
     //Title
-    screen: Screen4_StackNavigator,
+    screen: Screen3_StackNavigator,
     navigationOptions: {
       drawerLabel: 'Manage_vehicle',
     },
   },
-  Services: {
+  Profile: {
+    //Title
+    screen: Screen4_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Profile',
+    },
+  },
+  Join_our_team: {
     //Title
     screen: Screen5_StackNavigator,
     navigationOptions: {
-      drawerLabel: 'Services',
+      drawerLabel: 'Join_our_team',
     },
   },
+  Logout: {
+    //Title
+    screen: Screen6_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Logout',
+    },
+  },
+
 });
 export default createAppContainer(DrawerNavigatorExample);

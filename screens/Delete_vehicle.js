@@ -35,8 +35,8 @@ export default class Delete_vehicle extends Component {
 
     if (!errors.length) {
       Alert.alert(
-        "vehicle deleted!",
-        "Please check it.",
+        "vehicle deleted!","",
+   
         [
           {
             text: "OK",

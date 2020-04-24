@@ -24,6 +24,13 @@ export default class Login extends Component {
   };
 
   handleLogin() {
+
+    
+      fetch('http://192.168.100.113:3000/cusomer')
+        .then(response => response.json())
+        .then(cusomer => console.warn(cusomer))
+    
+
     const { navigation } = this.props;
     const { email, password } = this.state;
     const errors = [];
@@ -43,20 +50,9 @@ export default class Login extends Component {
 
     if (!errors.length) {
       console.log("sssssss");
-      Alert.alert(
-        "Password sent!",
-        "Please check you email.",
-        [
-          {
-            text: "OK",
-            onPress: () => {
+    
               navigation.navigate("Sallikna");
-            }
-          }
-        ],
-        
-        { cancelable: false }
-      );
+   
   
     }
     if (errors.length) {
@@ -111,7 +107,7 @@ export default class Login extends Component {
             />
             
             <Text bold white center>
-            {"\n"} {"\n"} {"\n"} {"\n"}
+            {"\n"} 
                 </Text>
 
             <Button gradient onPress={() => this.handleLogin()}>

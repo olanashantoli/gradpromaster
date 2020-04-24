@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
- 
+  ScrollView,
   Alert,
   ActivityIndicator,
   Keyboard,
@@ -41,8 +41,8 @@ export default class Join_our_team extends Component {
 
     if (!errors.length) {
       Alert.alert(
-        "you your comment was send !",
-        "Please check you email.",
+        "you your comment was send !","",
+        
         [
           {
             text: "OK",
@@ -72,17 +72,33 @@ export default class Join_our_team extends Component {
       <TouchableWithoutFeedback onpress={()=>{Keyboard.dismiss}}>
       <KeyboardAvoidingView style={styles.Join_our_team} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
-
+        <ScrollView>
           <Text h2 bold>
           {"    \n  \n\n"}
             Fill out the comment and our team
              will contaact you after reviewing
           </Text>
         {/* //  {"    \n  \n  \n  \n\n"} */}
-
+        <Input
+                label="Your Name"
+                error={hasErrors("username")}
+                style={[styles.input, hasErrors("username")]}
+                defaultValue={this.state.username}
+                onChangeText={text => this.setState({ username: text })}
+              />
+  
+              <Input
+                email
+                label="Email"
+                error={hasErrors("email")}
+                style={[styles.input, hasErrors("email")]}
+                defaultValue={this.state.email}
+                onChangeText={text => this.setState({ email: text })}
+              />
         
           <Input
-              label="  your comment : " 
+              label="  your comment :
+               " 
               multiline={true}
           
             
@@ -102,6 +118,7 @@ export default class Join_our_team extends Component {
                 </Text>
               )}
             </Button>
+            </ScrollView>
         </Block>
       </KeyboardAvoidingView>
       </TouchableWithoutFeedback>

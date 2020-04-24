@@ -6,7 +6,7 @@ import { Asset } from "expo-asset";
 
 import Navigation from "./navigation";
 import { Block } from "./components";
-
+import { MapView } from "expo";
 // import all used images
 const images = [
   require("./assets/icons/back.png"),
@@ -46,8 +46,12 @@ export default class App extends React.Component {
     return (
      // <Block black>
         <Navigation />
+        
      // </Block>
     );
+    
+      
+    
   }
 }
 
