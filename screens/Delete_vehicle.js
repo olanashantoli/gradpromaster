@@ -14,11 +14,22 @@ import { theme } from "../constants";
 //const VALID_EMAIL = "olahantoli@gmail.com";
 
 export default class Delete_vehicle extends Component {
-  state = {
-    plate_num: null,
-    errors: [],
-    loading: false
-  };
+  
+  constructor(props) {
+ 
+    super(props)
+ 
+    this.state = {
+ 
+      plate_num: '',
+   
+      errors: [],
+      loading: false
+ 
+    }
+ 
+  }
+
 
   handledelete() {
     const { navigation } = this.props;
@@ -30,8 +41,38 @@ export default class Delete_vehicle extends Component {
 
     // check with backend API or with some static data
    
-
+    if (!plate_num) errors.push("plate_num");
     this.setState({ errors, loading: false });
+
+    fetch('http://192.168.100.113:3000/customervehiclesDELETE/'+plate_num, {
+      method :'DELETE',
+
+       headers:{
+        'Accept':'application/json',
+        'Content-Type ': 'application/json',
+      },  
+       body:JSON.stringify({
+       
+         PlateNumber: this.state.plate_num,
+     
+      }) 
+  })
+        .then(response => response.json())
+       
+        .then((res)=>{
+          if (res.success===true){
+            var email= res.message;
+            AsyncStorage.setItem('email',email);
+            console.log("sssssss");
+           // navigation.navigate("Login");////for test put it  profile insted of sallikna
+
+          }
+          else{
+           console.log("fffffff");
+           Alert. alert(res.message);
+          }
+        })
+.done();
 
     if (!errors.length) {
       Alert.alert(

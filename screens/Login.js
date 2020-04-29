@@ -6,72 +6,36 @@ import {
   KeyboardAvoidingView,
   StyleSheet ,
   TouchableWithoutFeedback,
-  ScrollView
+  ScrollView,
+  AsyncStorage
 } from "react-native";
 
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
-const VALID_EMAIL = "olahantoli@gmail.com";
-const VALID_PASSWORD = "ola123";
+//const VALID_EMAIL = "olahantoli@gmail.com";
+//const VALID_PASSWORD = "ola123";
 
 export default class Login extends Component {
-  state = {
-    email: VALID_EMAIL,
-    password: VALID_PASSWORD,
+  /* state = {
+    email:'' ,
+    password: '',
     errors: [],
     loading: false
-  };
-
-  handleLogin() {
-
-    
-      fetch('http://192.168.100.113:3000/cusomer')
-        .then(response => response.json())
-        .then(cusomer => console.warn(cusomer))
-    
-
-    const { navigation } = this.props;
-    const { email, password } = this.state;
-    const errors = [];
-
-    Keyboard.dismiss();
-    this.setState({ loading: true });
-
-    // check with backend API or with some static data
-    if (email !== VALID_EMAIL) {
-      errors.push("email");
-    }
-    if (password !== VALID_PASSWORD) {
-      errors.push("password");
-    }
-
-    this.setState({ errors, loading: false });
-
-    if (!errors.length) {
-      console.log("sssssss");
-    
-              navigation.navigate("Sallikna");
-   
-  
-    }
-    if (errors.length) {
-      console.log("fffffff");
-      Alert.alert(
-        "Error",
-        "Please check you Email address.",
-        [{ text: "Try again" }],
-        { cancelable: false }
-      );
-  
-    }
-    
+  }; */
+  constructor(props){
+    super(props);
+    this.state={email:'', password:'', errors: [],
+    isLoading: true};
   }
+
 
   render() {
     const { navigation } = this.props;
-    const { loading, errors } = this.state;
-    const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
+  //  const errors = [];
+
+    const { loading } = this.state;
+  // const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
 
     return (
       <TouchableWithoutFeedback onpress={()=>{Keyboard.dismiss}}>
@@ -92,18 +56,20 @@ export default class Login extends Component {
           <ScrollView>
             <Input
               label="Email"
-              error={hasErrors("email")}
-              style={[styles.input, hasErrors("email")]}
-              defaultValue={this.state.email}
-              onChangeText={text => this.setState({ email: text })}
+             // error={hasErrors("email")}
+              //style={[styles.input, hasErrors("email")]}
+          //    defaultValue={this.state.email}
+              onChangeText={(email) => this.setState({ email})}
+              value={this.state.email}
             />
             <Input
               secure
               label="Password"
-              error={hasErrors("password")}
-              style={[styles.input, hasErrors("password")]}
-              defaultValue={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
+           //   error={hasErrors("password")}
+             // style={[styles.input, hasErrors("password")]}
+              //defaultValue={this.state.password}
+              onChangeText={(password) => this.setState({ password})}
+              value={this.state.password}
             />
             
             <Text bold white center>
@@ -148,6 +114,77 @@ export default class Login extends Component {
       </TouchableWithoutFeedback>
     );
   }
+ 
+  handleLogin(email,password) {
+    // const { navigation } = this.props;
+ 
+     
+       fetch('http://192.168.100.113:3000/cusomer/'+email+'/'+password, {
+       method :'GET',
+ 
+      /*  headers:{
+         'Accept':'application/json',
+         'Content-Type ': 'application/json',
+       },  */
+     /*   body:JSON.stringify({
+         email: this.state.email,
+         password: this.state.password,
+       }) */
+   })
+         .then(response => response.json())
+        
+         .then((res)=>{
+           if (res.success===true){
+             var email= res.message;
+             AsyncStorage.setItem('email',email);
+             console.log("sssssss");
+             navigation.navigate("Sallikna");////for test put it  profile insted of sallikna
+
+           }
+           else{
+            console.log("fffffff");
+             alert(res.message);
+           }
+         })
+ .done();
+     
+     //const { email, password } = this.state;
+ 
+     
+    // Keyboard.dismiss();
+    // this.setState({ loading: true });
+ 
+     // check with backend API or with some static data
+     /* if (email !== VALID_EMAIL) {
+       errors.push("email");
+     }
+     if (password !== VALID_PASSWORD) {
+       errors.push("password");
+     } */
+ 
+ 
+    /*  this.setState({ errors, loading: false });
+ 
+     if (!errors.length) {
+       console.log("sssssss");
+     
+               navigation.navigate("Sallikna");
+    
+   
+     }
+     if (errors.length) {
+       console.log("fffffff");
+       Alert.alert(
+         "Error",
+         "Please check you Email address.",
+         [{ text: "Try again" }],
+         { cancelable: false }
+       );
+   
+     } */
+     
+   }
+
 }
 
 const styles = StyleSheet.create({

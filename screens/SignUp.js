@@ -16,18 +16,26 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 
 export default class SignUp extends Component {
+  constructor(props) {
  
-  state = {
+    super(props)
+ 
+    this.state = {
+ 
+      username: '',
+      email: '',
+      mobile_phone:'',
+      password: '',
+      confirm_password: '',
     
-    username: null,
-    email: null,
-    mobile_phone:null,
-    password: null,
-    confirm_password: null,
-  
-    errors: [],
-    loading: false
-  };
+      errors: [],
+      loading: false
+ 
+    }
+ 
+  }
+
+ 
  
   handleSignUp() {
     const { navigation } = this.props;
@@ -49,6 +57,39 @@ export default class SignUp extends Component {
 
     this.setState({ errors, loading: false });
 
+    fetch('http://192.168.100.113:3000/cusomerADD', {
+      method :'POST',
+
+       headers:{
+        'Accept':'application/json',
+        'Content-Type ': 'application/json',
+      },  
+       body:JSON.stringify({
+         ID:"",
+         Name: this.state.username,
+        Email: this.state.email,
+        Password: this.state.password,
+        Phone: this.mobile_phone,
+        CustomerVehicles:"",
+      }) 
+  })
+        .then(response => response.json())
+       
+        .then((res)=>{
+          if (res.success===true){
+            var email= res.message;
+            AsyncStorage.setItem('email',email);
+            console.log("sssssss");
+            navigation.navigate("Login");////for test put it  profile insted of sallikna
+
+          }
+          else{
+           console.log("fffffff");
+           Alert. alert(res.message);
+          }
+        })
+.done();
+    
     if (!errors.length) {
 
       Alert.alert(
@@ -143,7 +184,7 @@ export default class SignUp extends Component {
               )}
             </Button>
 
-            <Button onPress={() => navigation.navigate("Welcome")}>
+            <Button onPress={() => navigation.navigate("Sallikna")}>
               <Text
                 gray
                 caption

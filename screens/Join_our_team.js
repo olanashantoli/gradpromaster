@@ -15,18 +15,29 @@ import { theme } from "../constants";
 
 
 
-const VALID_EMAIL = "olahantoli@gmail.com";
+const VALID_EMAIL = "lll";
 
 export default class Join_our_team extends Component {
-  state = {
-    email: VALID_EMAIL,
-    errors: [],
-    loading: false
-  };
-
+  constructor(props) {
+ 
+    super(props)
+ 
+    this.state = {
+ 
+      username: '',
+      email: '',
+      comment:'',
+     
+    
+      errors: [],
+      loading: false
+ 
+    }
+ 
+  }
   handlejoin() {
     const { navigation } = this.props;
-    const { email } = this.state;
+    const { email , username, comment } = this.state;
     const errors = [];
 
     Keyboard.dismiss();
@@ -36,8 +47,45 @@ export default class Join_our_team extends Component {
     if (email !== VALID_EMAIL) {
       errors.push("email");
     }
+    if (!username) errors.push("username");
+    if (!comment) errors.push("comment");
+    this.setState({ errors, loading: false });
+
 
     this.setState({ errors, loading: false });
+
+    fetch('http://192.168.100.113:3000/join', {
+      method :'POST',
+
+     /*   headers:{
+        'Accept':'application/json',
+        'Content-Type ': 'application/json',
+      }, */  
+       body:JSON.stringify({
+         ID:"1",
+         name: this.state.username,
+        email: this.state.email,
+        comment: this.state.password,
+      
+      }) 
+  })
+        .then(response => response.json())
+       
+        .then((res)=>{
+          if (res.success===true){
+            var email= res.message;
+            AsyncStorage.setItem('email',email);
+            console.log("sssssss");
+           // navigation.navigate("Profile");////for test put it  profile insted of sallikna
+
+          }
+          else{
+           console.log("fffffff");
+           Alert. alert(res.message);
+          }
+        })
+.done();
+    
 
     if (!errors.length) {
       Alert.alert(

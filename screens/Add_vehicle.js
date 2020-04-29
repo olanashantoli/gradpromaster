@@ -17,17 +17,25 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 export default class Add_vehicle extends Component {
  
-  state = {
+  constructor(props) {
+ 
+    super(props)
+ 
+    this.state = {
+ 
+      type: '',
+      model: '',
+      year:'',
+      plate: '',
+      reg: '',
     
-    type: null,
-    model: null,
-    year:null,
-    plate: null,
-    reg: null,
-  
-    errors: [],
-    loading: false
-  };
+      errors: [],
+      loading: false
+ 
+    }
+ 
+  }
+
  
   handleAdd_vehicle() {
     const { navigation } = this.props;
@@ -48,6 +56,40 @@ export default class Add_vehicle extends Component {
    
 
     this.setState({ errors, loading: false });
+
+    fetch('http://192.168.100.113:3000/customervehiclesADD', {
+      method :'POST',
+
+       headers:{
+        'Accept':'application/json',
+        'Content-Type ': 'application/json',
+      },  
+       body:JSON.stringify({
+       
+        VehicleType: this.state.type,
+        VehicleModel: this.state.model,
+        YearOfManufacture: this.state.year,
+        PlateNumber: this.plate,
+        RegistrationNumber:this.reg,
+      }) 
+  })
+        .then(response => response.json())
+       
+        .then((res)=>{
+          if (res.success===true){
+            var email= res.message;
+            AsyncStorage.setItem('email',email);
+            console.log("sssssss");
+            //navigation.navigate("Login");////for test put it  profile insted of sallikna
+
+          }
+          else{
+           console.log("fffffff");
+           Alert. alert(res.message);
+          }
+        })
+.done();
+    
 
     if (!errors.length) {
 
@@ -125,7 +167,7 @@ export default class Add_vehicle extends Component {
             />
              <Input
              
-              label="Registration Number"
+              label="VIN Number"
               error={hasErrors("reg")}
               style={[styles.input, hasErrors("reg")]}
               defaultValue={this.state.reg}

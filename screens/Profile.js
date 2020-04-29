@@ -6,7 +6,8 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   StyleSheet ,
-  ScrollView
+  ScrollView,
+  AsyncStorage
 } from "react-native";
 
 import { Button, Block, Input, Text } from "../components";
@@ -15,17 +16,38 @@ import { theme } from "../constants";
 
 export default class Profile extends Component {
  
-    state = {
-      
-      username: null,   /////////////////////////////////////
-      email: null,        ///////////////////////////
-      mobile_phone:null,
-      password: null,
-      confirm_password: null,
+  constructor(props) {
+ 
+    super(props)
+ 
+    this.state = {
+ 
+      username: '',
+      email: '',
+      mobile_phone:'',
+      password: '',
+      confirm_password: '',
     
       errors: [],
       loading: false
-    };
+ 
+    }
+ 
+  }
+  
+
+    ///////////////
+    componentDidMount(){
+      this._loadInitalState().done();
+    }
+
+    _loadInitalState=async()=>{
+      var value = await AsyncStorage.getItem('email');
+      if(value!== null){
+        this.setState({email:value})
+      }
+    }
+  
    // onPress = gender => this.setState({ gender });
     handleProfile() {
       const { navigation } = this.props;
@@ -47,6 +69,41 @@ export default class Profile extends Component {
   
       this.setState({ errors, loading: false });
   
+
+      fetch('http://192.168.100.113:3000/cusomerEDIT', {
+        method :'PUT',
+  
+         headers:{
+          'Accept':'application/json',
+          'Content-Type ': 'application/json',
+        },  
+         body:JSON.stringify({
+           ID:"",
+           Name: this.state.username,
+          Email: this.state.email,
+          Password: this.state.password,
+          Phone: this.mobile_phone,
+          CustomerVehicles:"",
+        }) 
+    })
+          .then(response => response.json())
+         
+          .then((res)=>{
+            if (res.success===true){
+              var email= res.message;
+              AsyncStorage.setItem('email',email);
+              console.log("sssssss");
+              navigation.navigate("Profile");
+  
+            }
+            else{
+             console.log("fffffff");
+             Alert. alert(res.message);
+            }
+          })
+  .done();
+      
+
       if (!errors.length) {
   
         Alert.alert(
