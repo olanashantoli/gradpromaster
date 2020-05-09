@@ -97,7 +97,10 @@ export default class Choose_Services extends Component {
                   </Text>
                 )}
               </Button>
-  
+              <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+            
               </ScrollView>
             </Block>
           </Block>

@@ -38,8 +38,41 @@ export default class SignUp extends Component {
  
  
   handleSignUp() {
+
     const { navigation } = this.props;
-    const { username,email, mobile_phone, password, confirm_password } = this.state;
+    fetch('http://192.168.43.137/Server/user_registration.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+    
+        name: this.state.username,
+    
+        email: this.state.email,
+    
+        password: this.state.password,
+
+        phone:this.state.mobile_phone
+    
+      })
+    
+    }).then((response) => response.json())
+          .then((responseJson) => {
+    
+    // Showing response message coming from server after inserting records.
+            Alert.alert(responseJson);
+    
+          }).catch((error) => {
+            console.error(error);
+          });
+        }
+
+
+
+   
+  /*   const { username,email, mobile_phone, password, confirm_password } = this.state;
     const errors = [];
 
    
@@ -105,8 +138,8 @@ export default class SignUp extends Component {
         ],
         { cancelable: false }
       );
-    }
-  }
+    } */
+ // }
 
   render() {
     const { navigation } = this.props;
@@ -137,7 +170,7 @@ export default class SignUp extends Component {
               error={hasErrors("username")}
               style={[styles.input, hasErrors("username")]}
               defaultValue={this.state.username}
-              onChangeText={text => this.setState({ username: text })}
+              onChangeText={name => this.setState({ username: name })}
             />
 
             <Input
@@ -146,7 +179,7 @@ export default class SignUp extends Component {
               error={hasErrors("email")}
               style={[styles.input, hasErrors("email")]}
               defaultValue={this.state.email}
-              onChangeText={text => this.setState({ email: text })}
+              onChangeText={email => this.setState({ email: email })}
             />
             <Input
             
@@ -154,7 +187,7 @@ export default class SignUp extends Component {
             error={hasErrors("mobile_phone")}
             style={[styles.input, hasErrors("mobile_phone")]}
             defaultValue={this.state.mobile_phone}
-            onChangeText={text => this.setState({ mobile_phone: text })}
+            onChangeText={phone => this.setState({ mobile_phone: phone })}
           /> 
             <Input
               secure
@@ -162,7 +195,7 @@ export default class SignUp extends Component {
               error={hasErrors("password")}
               style={[styles.input, hasErrors("password")]}
               defaultValue={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
+              onChangeText={password => this.setState({ password: password })}
             />
              <Input
               secure

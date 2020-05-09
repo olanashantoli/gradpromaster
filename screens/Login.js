@@ -23,12 +23,58 @@ export default class Login extends Component {
     errors: [],
     loading: false
   }; */
+
+ /*  static navigationOptions = {
+   title: 'loginActivity'
+  }; */
   constructor(props){
     super(props);
     this.state={email:'', password:'', errors: [],
     isLoading: true};
   }
 
+  handleLogin () {
+ 
+    const { email }  = this.state ;
+    const {password }  = this.state ;
+    
+    
+   fetch('http://192.168.43.137/Server/User_Login.php', {
+     method: 'POST',
+     headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({
+    
+       email: email,
+    
+       password: password
+    
+     })
+    
+   }).then((response) => response.json())
+         .then((responseJson) => {
+   
+           // If server response message same as Data Matched
+          if(responseJson === 'Data Matched')
+           {
+   
+               //Then open Profile activity and send user email to profile activity.
+              // this.props.navigation.navigate('Second', { email: email });
+              this.props.navigation.navigate("Sallikna");
+   
+           }
+           else{
+   
+             Alert.alert(responseJson);
+           }
+   
+         }).catch((error) => {
+           console.error(error);
+         });
+    
+     }
 
   render() {
     const { navigation } = this.props;
@@ -59,7 +105,7 @@ export default class Login extends Component {
              // error={hasErrors("email")}
               //style={[styles.input, hasErrors("email")]}
           //    defaultValue={this.state.email}
-              onChangeText={(email) => this.setState({ email})}
+              onChangeText={email => this.setState({ email})}
               value={this.state.email}
             />
             <Input
@@ -68,7 +114,7 @@ export default class Login extends Component {
            //   error={hasErrors("password")}
              // style={[styles.input, hasErrors("password")]}
               //defaultValue={this.state.password}
-              onChangeText={(password) => this.setState({ password})}
+              onChangeText={password => this.setState({ password})}
               value={this.state.password}
             />
             
@@ -115,25 +161,26 @@ export default class Login extends Component {
     );
   }
  
-  handleLogin(email,password) {
+  
+/*   handleLogin(email,password) {
     // const { navigation } = this.props;
- 
+    Alert.alert(
+      "fun",
+      "Please check you Email address.",
+      [{ text: "Try again" }],
+      { cancelable: false }
+    );
      
        fetch('http://192.168.100.113:3000/cusomer/'+email+'/'+password, {
        method :'GET',
  
-      /*  headers:{
-         'Accept':'application/json',
-         'Content-Type ': 'application/json',
-       },  */
-     /*   body:JSON.stringify({
-         email: this.state.email,
-         password: this.state.password,
-       }) */
+ 
    })
+  
          .then(response => response.json())
-        
+         
          .then((res)=>{
+           
            if (res.success===true){
              var email= res.message;
              AsyncStorage.setItem('email',email);
@@ -142,12 +189,18 @@ export default class Login extends Component {
 
            }
            else{
+            Alert.alert(
+              "errrrrr",
+              "Please check you Email address.",
+              [{ text: "Try again" }],
+              { cancelable: false }
+            );
             console.log("fffffff");
              alert(res.message);
            }
          })
  .done();
-     
+        } */
      //const { email, password } = this.state;
  
      
@@ -183,7 +236,7 @@ export default class Login extends Component {
    
      } */
      
-   }
+  // }
 
 }
 

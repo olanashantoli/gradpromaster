@@ -27,7 +27,7 @@ export default class Add_vehicle extends Component {
       model: '',
       year:'',
       plate: '',
-      reg: '',
+      regnum: '',
     
       errors: [],
       loading: false
@@ -39,6 +39,40 @@ export default class Add_vehicle extends Component {
  
   handleAdd_vehicle() {
     const { navigation } = this.props;
+    fetch('http://192.168.43.137/Server/AddVehicle.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+    
+        type: this.state.type,
+    
+        model: this.state.model,
+
+        year:this.state.year,
+
+        plate:this.state.plate,
+
+        regnum: this.state.regnum
+
+       
+    
+      })
+    
+    }).then((response) => response.json())
+          .then((responseJson) => {
+    
+    // Showing response message coming from server after inserting records.
+            Alert.alert(responseJson);
+    
+          }).catch((error) => {
+            console.error(error);
+          });
+        }
+
+    /*     
     const { type,model, year, plate, reg } = this.state;
     const errors = [];
 
@@ -105,7 +139,7 @@ export default class Add_vehicle extends Component {
         { cancelable: false }
       );
     }
-  }
+  } */
 
   render() {
     const { navigation } = this.props;
@@ -138,7 +172,7 @@ export default class Add_vehicle extends Component {
               error={hasErrors("type")}
               style={[styles.input, hasErrors("type")]}
               defaultValue={this.state.type}
-              onChangeText={text => this.setState({ type: text })}
+              onChangeText={type => this.setState({ type: type })}
             />
 
             <Input
@@ -147,7 +181,7 @@ export default class Add_vehicle extends Component {
               error={hasErrors("model")}
               style={[styles.input, hasErrors("model")]}
               defaultValue={this.state.model}
-              onChangeText={text => this.setState({ model: text })}
+              onChangeText={model => this.setState({ model: model })}
             />
             <Input
             
@@ -155,7 +189,7 @@ export default class Add_vehicle extends Component {
             error={hasErrors("year")}
             style={[styles.input, hasErrors("year")]}
             defaultValue={this.state.year}
-            onChangeText={text => this.setState({ year: text })}
+            onChangeText={year => this.setState({ year: year })}
           /> 
             <Input
              
@@ -163,18 +197,21 @@ export default class Add_vehicle extends Component {
               error={hasErrors("plate")}
               style={[styles.input, hasErrors("plate")]}
               defaultValue={this.state.plate}
-              onChangeText={text => this.setState({ plate: text })}
+              onChangeText={plate => this.setState({ plate: plate })}
             />
              <Input
              
               label="VIN Number"
-              error={hasErrors("reg")}
-              style={[styles.input, hasErrors("reg")]}
-              defaultValue={this.state.reg}
-              onChangeText={text => this.setState({ reg: text })}
+              error={hasErrors("regnum")}
+              style={[styles.input, hasErrors("regnum")]}
+              defaultValue={this.state.regnum}
+              onChangeText={regnum => this.setState({ regnum: regnum })}
             />
             
-         
+            <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+
             <Button gradient onPress={() => this.handleAdd_vehicle()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />
@@ -184,6 +221,9 @@ export default class Add_vehicle extends Component {
                 </Text>
               )}
             </Button>
+            <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
 
      
           </Block>

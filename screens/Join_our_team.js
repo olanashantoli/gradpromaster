@@ -15,7 +15,6 @@ import { theme } from "../constants";
 
 
 
-const VALID_EMAIL = "lll";
 
 export default class Join_our_team extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ export default class Join_our_team extends Component {
  
     this.state = {
  
-      username: '',
+      name: '',
       email: '',
       comment:'',
      
@@ -35,9 +34,41 @@ export default class Join_our_team extends Component {
     }
  
   }
+
   handlejoin() {
     const { navigation } = this.props;
-    const { email , username, comment } = this.state;
+
+    fetch('http://192.168.43.137/Server/join.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+    
+        name: this.state.name,
+    
+        email: this.state.email,
+    
+        comment: this.state.comment
+
+    
+      })
+    
+    }).then((response) => response.json())
+          .then((responseJson) => {
+    
+    // Showing response message coming from server after inserting records.
+            Alert.alert(responseJson);
+    
+          }).catch((error) => {
+
+              console.error(error);
+          });
+        }
+
+
+  /*   const { email , username, comment } = this.state;
     const errors = [];
 
     Keyboard.dismiss();
@@ -57,10 +88,10 @@ export default class Join_our_team extends Component {
     fetch('http://192.168.100.113:3000/join', {
       method :'POST',
 
-     /*   headers:{
+       headers:{
         'Accept':'application/json',
         'Content-Type ': 'application/json',
-      }, */  
+      },   
        body:JSON.stringify({
          ID:"1",
          name: this.state.username,
@@ -108,7 +139,7 @@ export default class Join_our_team extends Component {
       );
     }
   }
-  
+   */
 
   render() {
     const { navigation } = this.props;
@@ -129,10 +160,10 @@ export default class Join_our_team extends Component {
         {/* //  {"    \n  \n  \n  \n\n"} */}
         <Input
                 label="Your Name"
-                error={hasErrors("username")}
-                style={[styles.input, hasErrors("username")]}
-                defaultValue={this.state.username}
-                onChangeText={text => this.setState({ username: text })}
+                error={hasErrors("name")}
+                style={[styles.input, hasErrors("name")]}
+                defaultValue={this.state.name}
+                onChangeText={name => this.setState({ name: name })}
               />
   
               <Input
@@ -141,18 +172,20 @@ export default class Join_our_team extends Component {
                 error={hasErrors("email")}
                 style={[styles.input, hasErrors("email")]}
                 defaultValue={this.state.email}
-                onChangeText={text => this.setState({ email: text })}
+                onChangeText={email => this.setState({ email: email })}
               />
         
           <Input
-              label="  your comment :
-               " 
+              label="  your comment :"
+              error={hasErrors("comment")}
               multiline={true}
-          
+              maxLength={40}
+              defaultValue={this.state.comment}
+              onChangeText={comment => this.setState({ comment: comment })}
             
             />
      <Text h4 bold>
-         {"    \n\n \n\n"}
+         {"  \n\n"}
        
           </Text>
             
@@ -166,6 +199,10 @@ export default class Join_our_team extends Component {
                 </Text>
               )}
             </Button>
+            <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
+
             </ScrollView>
         </Block>
       </KeyboardAvoidingView>

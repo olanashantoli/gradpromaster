@@ -21,7 +21,7 @@ export default class Delete_vehicle extends Component {
  
     this.state = {
  
-      plate_num: '',
+      reg_num: '',
    
       errors: [],
       loading: false
@@ -33,7 +33,29 @@ export default class Delete_vehicle extends Component {
 
   handledelete() {
     const { navigation } = this.props;
-    const { plate_num } = this.state;
+    fetch('http://192.168.43.137/Server/DelVehicle.php', {
+      method: 'POST',///////////////
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+    
+        reg_num: this.state.reg_num
+      })
+    
+    }).then((response) => response.json())
+          .then((responseJson) => {
+    
+    // Showing response message coming from server after inserting records.
+            Alert.alert(responseJson);
+    
+          }).catch((error) => {
+            console.error(error);
+          });
+        }
+
+  /*   const { reg_num } = this.state;
     const errors = [];
 
     Keyboard.dismiss();
@@ -41,7 +63,7 @@ export default class Delete_vehicle extends Component {
 
     // check with backend API or with some static data
    
-    if (!plate_num) errors.push("plate_num");
+    if (!reg_num) errors.push("reg_num");
     this.setState({ errors, loading: false });
 
     fetch('http://192.168.100.113:3000/customervehiclesDELETE/'+plate_num, {
@@ -95,7 +117,7 @@ export default class Delete_vehicle extends Component {
       );
     }
   }
-
+ */
   render() {
     const { navigation } = this.props;
     const { loading, errors } = this.state;
@@ -114,11 +136,11 @@ export default class Delete_vehicle extends Component {
           </Text>
           <Block middle>
             <Input
-              label="Plate Number"
-              error={hasErrors("plate_num")}
-              style={[styles.input, hasErrors("plate_num")]}
-              defaultValue={this.state.plate_num}
-              onChangeText={text => this.setState({ plate_num: text })}
+              label="VIN Number"
+              error={hasErrors("reg_num")}
+              style={[styles.input, hasErrors("reg_num")]}
+              defaultValue={this.state.reg_num}
+              onChangeText={reg_num => this.setState({ reg_num: reg_num })}
             />
              <Text bold white center>
              {"\n"} {"\n"}

@@ -29,7 +29,37 @@ export default class Battery_Charge extends Component {
     }
  
   }
+  
+  handleCharge() {
+    const { navigation } = this.props;
+    fetch('http://192.168.43.137/Server/charge.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+    
+        plate_num: this.state.plate_num
+    
+        
+       
+    
+      })
+    
+    }).then((response) => response.json())
+          .then((responseJson) => {
+    
+    // Showing response message coming from server after inserting records.
+            Alert.alert(responseJson);
+    
+          }).catch((error) => {
+            console.error(error);
+          });
 
+          /////////////////shortest path 
+          ////////////////notification
+  }
 
   render() {
     const { navigation } = this.props;
@@ -38,14 +68,15 @@ export default class Battery_Charge extends Component {
 
     return (
       <TouchableWithoutFeedback onpress={()=>{Keyboard.dismiss}}>
-      <KeyboardAvoidingView style={styles.Delete_vehicle} behavior="padding">
+      <KeyboardAvoidingView style={styles.Battery_Charge} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
         <Text bold white center>
-             {"\n"} {"\n"}
+             {"\n"} 
+       
                 </Text>
-
-          <Text h1 bold>
-            Delete_vehicle
+       
+          <Text h2 bold>
+            Select your vehicle by write it's plate number below
           </Text>
           <Block middle>
             <Input
@@ -53,13 +84,13 @@ export default class Battery_Charge extends Component {
               error={hasErrors("plate_num")}
               style={[styles.input, hasErrors("plate_num")]}
               defaultValue={this.state.plate_num}
-              onChangeText={text => this.setState({ plate_num: text })}
+              onChangeText={plate_num => this.setState({ plate_num: plate_num })}
             />
              <Text bold white center>
              {"\n"} {"\n"}
                 </Text>
 
-            <Button gradient onPress={() => this.send()}>
+            <Button gradient onPress={() => this.handleCharge()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />
               ) : (
@@ -79,7 +110,7 @@ export default class Battery_Charge extends Component {
 }
 
 const styles = StyleSheet.create({
-  Delete_vehicle: {
+  Battery_Charge: {
     flex: 1,
     justifyContent: "center"
   },
@@ -93,3 +124,4 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.accent
   }
 });
+ 
