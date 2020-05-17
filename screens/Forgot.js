@@ -11,11 +11,11 @@ import {
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
-const VALID_EMAIL = "olahantoli@gmail.com";
+//onst VALID_EMAIL = "olahantoli@gmail.com";
 
 export default class Forgot extends Component {
   state = {
-    email: VALID_EMAIL,
+    email: global.Email,
     errors: [],
     loading: false
   };
@@ -29,10 +29,10 @@ export default class Forgot extends Component {
     this.setState({ loading: true });
 
     // check with backend API or with some static data
-    if (email !== VALID_EMAIL) {
+  /*   if (email !== VALID_EMAIL) {
       errors.push("email");
     }
-
+ */
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
@@ -97,16 +97,7 @@ export default class Forgot extends Component {
               )}
             </Button>
 
-            <Button onPress={() => navigation.navigate("Welcome")}>
-              <Text
-                gray
-                caption
-                center
-                style={{ textDecorationLine: "underline" }}
-              >
-                Back to welcome page
-              </Text>
-            </Button>
+            
           </Block>
         </Block>
       </KeyboardAvoidingView>

@@ -26,7 +26,7 @@ export default class RepairingAndChangingTyre extends Component {
       type:'',
       num:'',
       rad:'',
-   
+      Email:'',
       errors: [],
       loading: false
  
@@ -52,8 +52,8 @@ export default class RepairingAndChangingTyre extends Component {
     
         num: this.state.num,
 
-        rad:this.state.rad
-
+        rad:this.state.rad,
+        Email: global.Email
     
       })
     

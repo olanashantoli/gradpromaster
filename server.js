@@ -37,7 +37,7 @@ app.listen(3000, () => {
 });
  */
 
-const mysql = require('mysql');
+/* const mysql = require('mysql');
 const express = require('express');
 var app = express();
 const bodyparser = require('body-parser');
@@ -91,7 +91,7 @@ app.delete('/cusomer/:ID', (req, res) => {
         else
             console.log(err);
     })
-});
+}); */
 /*
 //Insert an employees
 app.post('/employees', (req, res) => {

@@ -27,18 +27,20 @@ export default class Login extends Component {
  /*  static navigationOptions = {
    title: 'loginActivity'
   }; */
+  
   constructor(props){
     super(props);
+    
     this.state={email:'', password:'', errors: [],
     isLoading: true};
+    
   }
 
   handleLogin () {
- 
+
     const { email }  = this.state ;
     const {password }  = this.state ;
-    
-    
+    global.Email=email;
    fetch('http://192.168.43.137/Server/User_Login.php', {
      method: 'POST',
      headers: {
@@ -62,7 +64,7 @@ export default class Login extends Component {
    
                //Then open Profile activity and send user email to profile activity.
               // this.props.navigation.navigate('Second', { email: email });
-              this.props.navigation.navigate("Sallikna");
+              this.props.navigation.navigate("Sallikna" ,{Email: email});
    
            }
            else{
@@ -143,16 +145,7 @@ export default class Login extends Component {
               </Text>
             </Button>
             
-            <Button onPress={() => navigation.navigate("Welcome")}>
-              <Text
-                gray
-                caption
-                center
-                style={{ textDecorationLine: "underline" }}
-              >
-                Back to welcome page
-              </Text>
-            </Button>
+         
             </ScrollView>
           </Block>
         </Block>
@@ -166,6 +159,8 @@ export default class Login extends Component {
     // const { navigation } = this.props;
     Alert.alert(
       "fun",
+     
+     
       "Please check you Email address.",
       [{ text: "Try again" }],
       { cancelable: false }

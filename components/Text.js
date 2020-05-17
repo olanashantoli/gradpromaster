@@ -105,6 +105,9 @@ const styles = StyleSheet.create({
   semibold: {
     fontWeight: "500"
   },
+  red: {
+    fontWeight: "500"
+  },
   medium: {
     fontWeight: "500"
   },

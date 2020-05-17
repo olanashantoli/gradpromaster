@@ -94,7 +94,7 @@ const Screen3_StackNavigator = createStackNavigator({
   Third: {
     screen: Manage_vehicle,
     navigationOptions: ({ navigation }) => ({
-      title: 'Manage_vehicle',
+      title: 'Manage vehicle',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         height: theme.sizes.base * 5,
@@ -125,7 +125,7 @@ const Screen5_StackNavigator = createStackNavigator({
   Fiveth: {
     screen: Join_our_team,
     navigationOptions: ({ navigation }) => ({
-      title: 'Join_our_team',
+      title: 'Join our team',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         height: theme.sizes.base * 5,
@@ -176,7 +176,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
     //Title
     screen: Screen3_StackNavigator,
     navigationOptions: {
-      drawerLabel: 'Manage_vehicle',
+      drawerLabel: 'Manage vehicle',
     },
   },
   Profile: {
@@ -190,7 +190,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
     //Title
     screen: Screen5_StackNavigator,
     navigationOptions: {
-      drawerLabel: 'Join_our_team',
+      drawerLabel: 'Join our team',
     },
   },
   Logout: {

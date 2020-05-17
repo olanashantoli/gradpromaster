@@ -112,6 +112,11 @@ class Welcome extends Component {
               Signup
             </Text>
           </Button>
+          <Button shadow onPress={() => navigation.navigate("CALL")}>
+            <Text center red>
+              Ecall
+            </Text>
+          </Button>
      
 
         </Block>

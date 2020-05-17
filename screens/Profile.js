@@ -24,7 +24,7 @@ export default class Profile extends Component {
  
   //    username: '',
       email: '',
-      mobile_phone:'',
+      mobile_phone:global.Phone,
       password: '',
       confirm_password: '',
     
@@ -51,6 +51,8 @@ export default class Profile extends Component {
    // onPress = gender => this.setState({ gender });
     handleProfile() {
       const { navigation } = this.props;
+      if(this.state.password == this.state.confirm_password){
+    
 
       fetch('http://192.168.43.137/Server/profile.php', {
         method: 'POST',
@@ -62,7 +64,7 @@ export default class Profile extends Component {
       
        ///   name: this.state.username,
       
-          email: this.state.email,
+          email: global.Email,
       
           password: this.state.password,
   
@@ -86,6 +88,16 @@ export default class Profile extends Component {
 
               console.error(error);
             });
+          }
+          else{
+            Alert.alert(
+              "eror : paswword dont match",
+              "Please check password.",
+              [{ text: "Try again" }],
+              { cancelable: false }
+            );
+          }
+          
           }
 
       /*     
@@ -184,22 +196,23 @@ export default class Profile extends Component {
 
             <Block middle>
             <ScrollView>
-            <Input
+           {/*  <Input
                 label="Username"
                 error={hasErrors("username")}
                 style={[styles.input, hasErrors("username")]}
                 defaultValue={this.state.username}
                 onChangeText={text => this.setState({ username: text })}
-              />
-  
-              <Input
+              /> */}
+  <Text style = {styles.TextComponentStyle}> Welcome  { global.UserName } </Text>
+  <Text style = {styles.TextComponentStyle}> Your Email : { global.Email } </Text>
+           {/*   <Input
                 email
                 label="Email"
                 error={hasErrors("email")}
                 style={[styles.input, hasErrors("email")]}
-                defaultValue={this.state.email}
+                defaultValue={ global.Email}
                 onChangeText={email => this.setState({ email: email })}
-              />
+              /> */}
               <Input
               
               label="mobile_phone"
@@ -222,7 +235,7 @@ export default class Profile extends Component {
                 error={hasErrors("confirm_password")}
                 style={[styles.input, hasErrors("confirm_password")]}
                 defaultValue={this.state.confirm_password}
-                onChangeText={text => this.setState({ confirm_password: text })}
+                onChangeText={confirm_password => this.setState({ confirm_password: confirm_password })}
               />
                 <Text bold white center>
              {"\n"} {"\n"}
@@ -252,8 +265,8 @@ export default class Profile extends Component {
     
       );
     }
-  }
   
+  }
   
   
   const styles = StyleSheet.create({
@@ -271,5 +284,12 @@ export default class Profile extends Component {
       borderBottomColor: theme.colors.accent
     },
    
+    TextComponentStyle: {
+      fontSize: 20,
+     color: "#000",
+    // textAlign: 'center', 
+     marginBottom: 15
+    }
+
   });
   

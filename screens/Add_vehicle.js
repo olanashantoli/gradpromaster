@@ -28,7 +28,7 @@ export default class Add_vehicle extends Component {
       year:'',
       plate: '',
       regnum: '',
-    
+      Email:'',
       errors: [],
       loading: false
  
@@ -46,7 +46,7 @@ export default class Add_vehicle extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-    
+        Email: global.Email,
         type: this.state.type,
     
         model: this.state.model,

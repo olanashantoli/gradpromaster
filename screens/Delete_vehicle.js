@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {
+import {ScrollView,
   Alert,
   ActivityIndicator,
   Keyboard,
@@ -22,7 +22,7 @@ export default class Delete_vehicle extends Component {
     this.state = {
  
       reg_num: '',
-   
+   Email:'',
       errors: [],
       loading: false
  
@@ -40,7 +40,7 @@ export default class Delete_vehicle extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-    
+        Email: global.Email,
         reg_num: this.state.reg_num
       })
     
@@ -127,6 +127,7 @@ export default class Delete_vehicle extends Component {
       <TouchableWithoutFeedback onpress={()=>{Keyboard.dismiss}}>
       <KeyboardAvoidingView style={styles.Delete_vehicle} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
+        <ScrollView>
         <Text bold white center>
              {"\n"} {"\n"}
                 </Text>
@@ -155,9 +156,13 @@ export default class Delete_vehicle extends Component {
                 </Text>
               )}
             </Button>
+            <Text bold white center>
+             {"\n"} {"\n"}
+                </Text>
 
            
           </Block>
+          </ScrollView>
         </Block>
       </KeyboardAvoidingView>
       </TouchableWithoutFeedback>

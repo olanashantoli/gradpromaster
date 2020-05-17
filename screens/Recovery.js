@@ -21,7 +21,7 @@ export default class Recovery extends Component {
     super(props)
  
     this.state = {
- 
+      Email:'',
       plate_num: '',
       phone:'',
       errors: [],
@@ -45,7 +45,7 @@ export default class Recovery extends Component {
         plate_num: this.state.plate_num,
     
         phone: this.state.phone,
-    
+        Email: global.Email
       
 
     

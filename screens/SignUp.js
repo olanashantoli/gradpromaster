@@ -38,7 +38,16 @@ export default class SignUp extends Component {
  
  
   handleSignUp() {
-
+     const { username }  = this.state ;
+    const { mobile_phone }  = this.state ; 
+    const { email }  = this.state ;
+    const {password }  = this.state ;
+    const { confirm_password }  = this.state ;
+  
+        global.UserName=username;/////////////////////////////////
+      global.Phone=mobile_phone;
+      
+    if(password == confirm_password){
     const { navigation } = this.props;
     fetch('http://192.168.43.137/Server/user_registration.php', {
       method: 'POST',
@@ -48,13 +57,13 @@ export default class SignUp extends Component {
       },
       body: JSON.stringify({
     
-        name: this.state.username,
+        name: username,
     
-        email: this.state.email,
+        email: email,
     
-        password: this.state.password,
+        password:password,
 
-        phone:this.state.mobile_phone
+        phone:mobile_phone
     
       })
     
@@ -63,10 +72,21 @@ export default class SignUp extends Component {
     
     // Showing response message coming from server after inserting records.
             Alert.alert(responseJson);
-    
+        
           }).catch((error) => {
             console.error(error);
           });
+      
+        }
+        else{
+          Alert.alert(
+            "eror : paswword dont match",
+            "Please check password.",
+            [{ text: "Try again" }],
+            { cancelable: false }
+          );
+        }
+
         }
 
 
@@ -183,7 +203,7 @@ export default class SignUp extends Component {
             />
             <Input
             
-            label="mobile_phone"
+            label="Mobile Phone"
             error={hasErrors("mobile_phone")}
             style={[styles.input, hasErrors("mobile_phone")]}
             defaultValue={this.state.mobile_phone}
@@ -199,11 +219,11 @@ export default class SignUp extends Component {
             />
              <Input
               secure
-              label="confirm_password"
+              label="Confirm Password"
               error={hasErrors("confirm_password")}
               style={[styles.input, hasErrors("confirm_password")]}
               defaultValue={this.state.confirm_password}
-              onChangeText={text => this.setState({ confirm_password: text })}
+              onChangeText={confirm_password => this.setState({ confirm_password: confirm_password })}
             />
             
          
@@ -217,16 +237,6 @@ export default class SignUp extends Component {
               )}
             </Button>
 
-            <Button onPress={() => navigation.navigate("Sallikna")}>
-              <Text
-                gray
-                caption
-                center
-                style={{ textDecorationLine: "underline" }}
-              >
-                Back to welcome page
-              </Text>
-            </Button>
             </ScrollView>
           </Block>
           

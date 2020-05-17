@@ -23,8 +23,8 @@ export default class Join_our_team extends Component {
  
     this.state = {
  
-      name: '',
-      email: '',
+      name: global.UserName,
+      email: global.Email,
       comment:'',
      
     

@@ -25,7 +25,7 @@ export default class Refilling_Fuel extends Component {
       plate_num: '',
       PickerValue:'',
       num:'',
-   
+      Email:'',
       errors: [],
       loading: false
  
@@ -48,8 +48,8 @@ export default class Refilling_Fuel extends Component {
     
         PickerValue: this.state.PickerValue,
     
-        num: this.state.num
-
+        num: this.state.num,
+        Email: global.Email
     
       })
     

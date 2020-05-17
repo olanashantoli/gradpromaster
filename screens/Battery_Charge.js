@@ -22,7 +22,7 @@ export default class Battery_Charge extends Component {
     this.state = {
  
       plate_num: '',
-   
+      Email:'',
       errors: [],
       loading: false
  
@@ -40,8 +40,8 @@ export default class Battery_Charge extends Component {
       },
       body: JSON.stringify({
     
-        plate_num: this.state.plate_num
-    
+        plate_num: this.state.plate_num,
+        Email: global.Email
         
        
     

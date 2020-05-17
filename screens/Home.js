@@ -5,6 +5,7 @@ import { StyleSheet, View, Text } from 'react-native';
 // import all basic components
 import  MapView  from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+
 export default class Home extends Component {
 
   constructor(props) {

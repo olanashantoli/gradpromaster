@@ -24,7 +24,7 @@ export default class Break_Down extends Component {
       plate_num: '',
       phone:'',
       describtion:'',
-   
+      Email:'',
       errors: [],
       loading: false
  
@@ -47,8 +47,9 @@ export default class Break_Down extends Component {
     
         phone: this.state.phone,
     
-        describtion: this.state.describtion
-
+        describtion: this.state.describtion,
+        Email: global.Email
+        
     
       })
     
